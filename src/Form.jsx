@@ -12,16 +12,22 @@ class Form extends Component {
     async handleSubmit(event) {
         event.preventDefault();
         try {
-            //const response = await axios.get('http://www.mocky.io/v2/5cd31fc7310000f59a339be6');
-            const response = await axios.get('http://www.mocky.io/v2/5cd32023310000e99a339be7');
+            const response = await axios.get('/election/create');
             this.setState({response:response.data});
+            this.setState({response:"foo"});
+	    console.log("success")
+            console.log(response.data)
         }catch(error){
-            this.setState({response:error.toString()});
-
+           this.setState({response:error.toString()});
+           console.log("error")
         }
+
     }
+    
+
 
     handleClick(event) {
+	    console.log("bar")
         let newClickedState="non";
         if(this.state.clicked==="non"){
             newClickedState="oui";

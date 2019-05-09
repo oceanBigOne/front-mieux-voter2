@@ -31,12 +31,13 @@ describe('Form', () => {
         console.log(wrapper.state().clicked);
         console.log(wrapper.state().response);
 
-        wrapper.find('button[type="submit"]').simulate("click");
         wrapper.find('button[type="button"]').simulate("click");
-
-        console.log("after :");
+        wrapper.find('form').simulate('submit', { preventDefault() {} }); 
+        //wrapper.update();
+        
+	console.log("after :");
         console.log(wrapper.state().clicked);
-        console.log(wrapper.state().response);
+        console.log(wrapper.state());
 
         done();
 
