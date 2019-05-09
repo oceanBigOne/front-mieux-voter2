@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.0"
@@ -27,5 +29,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.9.0",
+    "jest-puppeteer": "^4.1.1",
+    "puppeteer": "^1.15.0",
+    "react-test-renderer": "^16.8.6"
   }
 }
