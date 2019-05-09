@@ -1,5 +1,4 @@
 import React from 'react';
-import SyntheticEvent from 'react';
 import * as axios from "axios";
 import mockedTable from "./mockedTable";
 import Adapter from 'enzyme-adapter-react-16';
