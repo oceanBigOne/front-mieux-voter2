@@ -1,6 +1,6 @@
 const mockedTable={
     "/election/create": {
-        "data":"ok"
+        "data":"on passe bien par mockedTable !"
     }
 };
 

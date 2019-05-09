@@ -4,30 +4,29 @@ import axios from "axios";
 class Form extends Component {
     constructor(props) {
         super(props);
-        this.state = {value: '',response:"",clicked:"non"};
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.state = {value: '',clicked:"non"};
     }
 
-    async handleSubmit(event) {
+    handleSubmit = (event) => {
         event.preventDefault();
-        try {
-            const response = await axios.get('/election/create');
-            this.setState({response:response.data});
-            this.setState({response:"foo"});
-	    console.log("success")
-            console.log(response.data)
-        }catch(error){
-           this.setState({response:error.toString()});
-           console.log("error")
-        }
+        axios.get('/election/create')
+            .then(
+                (response)=>{
+                    this.setState({value:response});
+                }
+                ).catch(
+                    (error)=>{
+                        this.setState({value:error});
+                    });
+    };
 
-    }
-    
+    handleChange = (event) => {
+        let change = {};
+        change[event.target.name] = event.target.value;
+        this.setState(change)
+    };
 
-
-    handleClick(event) {
-	    console.log("bar")
+    handleClick= () => {
         let newClickedState="non";
         if(this.state.clicked==="non"){
             newClickedState="oui";
@@ -43,7 +42,7 @@ class Form extends Component {
 
                     <label >
                         Name :
-                        <input type="text" value={this.state.value} onChange={this.handleChange} />
+                        <input type="text" name="value" value={this.state.value} onChange={this.handleChange} />
                     </label>
                     <button type="submit" >SUBMIT</button>
                     <div>{this.state.response}</div>

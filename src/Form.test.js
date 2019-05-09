@@ -1,4 +1,5 @@
 import React from 'react';
+import SyntheticEvent from 'react';
 import * as axios from "axios";
 import mockedTable from "./mockedTable";
 import Adapter from 'enzyme-adapter-react-16';
@@ -17,26 +18,24 @@ describe('Form', () => {
 
 
     beforeAll(() => {
-        axios.get.mockImplementation((url) => Promise.resolve(mockedTable[url]));
+       axios.get.mockImplementation((url) => Promise.resolve(mockedTable[url]));
     });
 
     afterAll(() => {
         axios.get.restore();
     });
 
-    it('test submit', (done) => {
+    it('test submit', async (done) => {
         const wrapper = shallow(<Form />);
+        const mockedEvent= { preventDefault(){} }
 
-        console.log("before :");
-        console.log(wrapper.state().clicked);
-        console.log(wrapper.state().response);
+        //Before :
+        console.log(wrapper.state());
 
         wrapper.find('button[type="button"]').simulate("click");
-        wrapper.find('form').simulate('submit', { preventDefault() {} }); 
-        //wrapper.update();
-        
-	console.log("after :");
-        console.log(wrapper.state().clicked);
+        await wrapper.find('form').simulate('submit', mockedEvent);
+
+        //After :
         console.log(wrapper.state());
 
         done();
